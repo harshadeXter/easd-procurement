@@ -21,4 +21,7 @@ public class ApprovalLevel {
 
     @Column(name = "approval_amount")
     private Double approvalAmount;
+
+    @OneToOne(mappedBy = "approvalLevel")
+    private Employee employee;
 }

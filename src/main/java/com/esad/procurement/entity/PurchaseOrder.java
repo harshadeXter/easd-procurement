@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "purchase_orders")
@@ -43,4 +44,11 @@ public class PurchaseOrder {
 
     @Column(name = "created_by")
     private String createBy;
+
+    @OneToOne(mappedBy = "purchaseOrder")
+    private Shipment shipment;
+
+    @OneToMany(mappedBy = "purchaseOrder", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<PurchaseOrderLine> purchaseOrderLines;
+
 }

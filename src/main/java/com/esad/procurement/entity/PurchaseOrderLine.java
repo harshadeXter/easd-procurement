@@ -17,9 +17,6 @@ public class PurchaseOrderLine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "purchase_order_id")
-    private long purchaseOrderId;
-
     @Column(name = "item_id")
     private long itemId;
 
@@ -49,4 +46,8 @@ public class PurchaseOrderLine {
 
     @Column(name = "notes")
     private String notes;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "purchase_order_id", nullable = false)
+    private PurchaseOrder purchaseOrder;
 }

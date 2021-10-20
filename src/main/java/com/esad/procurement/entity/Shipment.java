@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "shipments")
@@ -21,6 +22,13 @@ public class Shipment {
 
     @Column(name = "received_by")
     private String receivedBy;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    private PurchaseOrder purchaseOrder;
+
+    @OneToMany(mappedBy = "shipment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<ShipmentLines> shipmentLines;
 
     //
 }

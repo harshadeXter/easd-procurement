@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "return_supplier_invoices")
@@ -30,4 +31,7 @@ public class ReturnSupplierInvoice {
 
     @Column(name = "total_amount")
     private Double totalAmount;
+
+    @OneToMany(mappedBy = "returnSupplierInvoice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<ReturnSupplierInvoiceLine> returnSupplierInvoiceLines;
 }

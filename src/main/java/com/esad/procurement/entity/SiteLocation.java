@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "site_locations")
@@ -21,4 +22,7 @@ public class SiteLocation {
 
     @Column(name = "delivery_address")
     private String deliveryAddress;
+
+    @OneToMany(mappedBy = "sites", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<PurchaseRequest> purchaseRequests;
 }

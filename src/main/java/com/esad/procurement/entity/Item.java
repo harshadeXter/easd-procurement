@@ -27,4 +27,7 @@ public class Item {
 
     @Column(name = "supplier_id")
     private long supplierId;
+
+    @OneToOne(mappedBy = "item")
+    private PurchaseRequestLines purchaseRequestLines;
 }

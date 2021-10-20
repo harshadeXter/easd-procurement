@@ -16,8 +16,6 @@ public class SupplierInvoiceLine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "invoice_id")
-    private String invoiceId;
 
     @Column(name = "unit_price")
     private String unitPrice;
@@ -27,4 +25,8 @@ public class SupplierInvoiceLine {
 
     @Column(name = "line_total")
     private Double lineTotal;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "supplier_invoice_id", nullable = false)
+    private SupplierInvoice supplierInvoice;
 }

@@ -25,7 +25,9 @@ public class ShipmentLines {
     @Column(name = "actual_quantity")
     private String actualQuantity;
 
-    //
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "shipment_id", nullable = false)
+    private Shipment shipment;
 
     //
 

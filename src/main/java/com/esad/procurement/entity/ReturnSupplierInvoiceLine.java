@@ -16,8 +16,6 @@ public class ReturnSupplierInvoiceLine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "ret_invoice_id")
-    private String returnInvoiceId;
 
     @Column(name = "item_id")
     private String itemId;
@@ -30,4 +28,8 @@ public class ReturnSupplierInvoiceLine {
 
     @Column(name = "line_total")
     private Double lineTotal;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ret_invoice_id", nullable = false)
+    private ReturnSupplierInvoice returnSupplierInvoice;
 }

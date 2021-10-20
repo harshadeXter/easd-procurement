@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "purchase_requests")
@@ -43,4 +44,17 @@ public class PurchaseRequest {
 
     @Column(name = "deliver_address")
     private String deliverAddress;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "employe_id", nullable = false)
+    private Employee employee;
+
+    @OneToMany(mappedBy = "purchaseRequest", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<PurchaseRequestLines> purchaseRequestLines;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "site_id", nullable = false)
+    private SiteLocation siteLocation;
+
+
 }

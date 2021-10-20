@@ -3,7 +3,7 @@ package com.esad.procurement.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -22,9 +22,13 @@ public class Employee {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "approval_level")
-    private long approvalLevel;
-
     @Column(name = "email")
     private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "level_id", referencedColumnName = "id")
+    private ApprovalLevel approvalLevel;
+
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<PurchaseRequest> purchaseRequest;
 }

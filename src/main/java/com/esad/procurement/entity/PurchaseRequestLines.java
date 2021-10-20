@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.servlet.http.Part;
 import java.util.Date;
 
 @Entity
@@ -40,5 +41,13 @@ public class PurchaseRequestLines {
 
     @Column(name = "supplier_id")
     private long supplierId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_id", referencedColumnName = "id")
+    private Item item;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "purchase_id", nullable = false)
+    private PurchaseRequest purchaseRequest;
 
 }
