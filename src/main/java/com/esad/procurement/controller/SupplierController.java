@@ -1,0 +1,14 @@
+package com.esad.procurement.controller;
+
+
+import com.esad.procurement.service.SupplierService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class SupplierController {
+    @Autowired
+    private SupplierService supplierService;
+
+
+}
