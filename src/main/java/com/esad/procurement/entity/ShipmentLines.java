@@ -29,6 +29,4 @@ public class ShipmentLines {
     @JoinColumn(name = "shipment_id", nullable = false)
     private Shipment shipment;
 
-    //
-
 }

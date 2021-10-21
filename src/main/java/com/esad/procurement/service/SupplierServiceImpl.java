@@ -25,6 +25,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public void saveSupplierDetails(Supplier supplier) {
+        System.out.println("Supplier :" + supplier);
         this.supplierRepository.save(supplier);
     }
 
