@@ -17,15 +17,14 @@ public class SupplierController {
     private SupplierService supplierService;
 
     @GetMapping("/suppliers")
-    public String viewHomePage(Model model) {
+    public String viewSupplierListPage(Model model) {
         Supplier supplier = new Supplier();
         model.addAttribute("supplier", supplier);
         return findPaginated(1, "supplierName", "asc", model);
     }
 
     @PostMapping("/saveSupplier")
-    public String saveEmployee(@ModelAttribute("supplier") Supplier supplier) {
-        System.out.println("web Sup" + supplier);
+    public String saveSupplier(@ModelAttribute("supplier") Supplier supplier) {
         supplierService.saveSupplierDetails(supplier);
         return "redirect:/suppliers";
     }
@@ -55,7 +54,7 @@ public class SupplierController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("listSuppliers", listSuppliers);
-        return "index";
+        return "suppliers";
     }
 
 }

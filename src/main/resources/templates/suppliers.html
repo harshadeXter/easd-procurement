@@ -24,11 +24,11 @@
                     url: "http://localhost:8080/api/v1/supplier/find/" + id,
                     success: function (supplier) {
                         console.log(this.url);
-                        console.log('supp' + supplier.supplierName + supplier.phone + supplier.address);
-                        $('#editModal #editId').val(supplier.id);
-                        $('#editModal #supplierName').val(supplier.supplierName);
-                        $('#editModal #phone').val(supplier.phone);
-                        $('#editModal #address').val(supplier.address);
+                        console.log('supp' + suppliers.supplierName + suppliers.phone + suppliers.address);
+                        $('#editModal #editId').val(suppliers.id);
+                        $('#editModal #supplierName').val(suppliers.supplierName);
+                        $('#editModal #phone').val(suppliers.phone);
+                        $('#editModal #address').val(suppliers.address);
                     }
                 });
             })
@@ -172,7 +172,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-success">Update</button>
 <!--                        <input type="hidden" id="editId" th:value="${supplier.id}">-->
                     </div>
                 </div>
