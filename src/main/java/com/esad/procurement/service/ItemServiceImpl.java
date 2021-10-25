@@ -28,15 +28,6 @@ public class ItemServiceImpl implements ItemService {
         this.itemRepository.save(item);
     }
 
-    /*Optional<Supplier> existSupplier = supplierRepository.findById(id);
-        Supplier supplier = null;
-        if (existSupplier.isPresent()) {
-            supplier = existSupplier.get();
-        }else {
-            throw new RuntimeException(" No Supplier found for id : " + id);
-        }
-        return supplier;*/
-
     @Override
     public Item getItemById(long id) {
         Item item = null;
