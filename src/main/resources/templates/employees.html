@@ -5,7 +5,6 @@
     <title>Procurement System</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
             integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
             crossorigin="anonymous"></script>
@@ -21,13 +20,12 @@
                 let id = $(this).parent().find('#id').val();
                 $.ajax({
                     type: 'GET',
-                    url: "http://localhost:8080/api/v1/item/find/" + id,
-                    success: function (item) {
-                        $('#editModal #editId').val(item.id);
-                        $('#editModal #itemDescription').val(item.itemDescription);
-                        $('#editModal #itemUnitOfMeasure').val(item.unitOfMeasure);
-                        $('#editModal #itemUnitPrice').val(item.unitPrice);
-                        $('#editModal #itemSupplierId').val(item.supplierId);
+                    url: "http://localhost:8080/api/v1/employee/find/" + id,
+                    success: function (employee) {
+                        $('#editModal #editId').val(employee.id);
+                        $('#editModal #supplierName').val(employee.supplierName);
+                        $('#editModal #phone').val(employee.phone);
+                        $('#editModal #address').val(employee.address);
                     }
                 });
             })
@@ -38,8 +36,9 @@
 <body>
 
 <div class="container my-2">
-    <h1>Items List</h1>
+    <h1>Employees List</h1>
     <hr>
+
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add New</button>
 
     <hr>
@@ -48,47 +47,43 @@
         <thead>
         <tr>
             <th>
-                <a th:href="@{'/itemPage/' + ${currentPage} + '?sortField=itemDescription&sortDir=' + ${reverseSortDir}}">
-                    Item Description</a>
+                <a th:href="@{'/employeePage/' + ${currentPage} + '?sortField=supplierName&sortDir=' + ${reverseSortDir}}">
+                    Supplier Name</a>
             </th>
             <th>
-                <a th:href="@{'/itemPage/' + ${currentPage} + '?sortField=unitOfMeasure&sortDir=' + ${reverseSortDir}}">
-                    Item Unit of Measure</a>
+                <a th:href="@{'/employeePage/' + ${currentPage} + '?sortField=phone&sortDir=' + ${reverseSortDir}}">
+                    Supplier Mobile</a>
             </th>
             <th>
-                <a th:href="@{'/itemPage/' + ${currentPage} + '?sortField=unitPrice&sortDir=' + ${reverseSortDir}}">
-                    Item Unit Price</a>
-            </th>
-            <th>
-                <a th:href="@{'/itemPage/' + ${currentPage} + '?sortField=supplierId&sortDir=' + ${reverseSortDir}}">
-                    Supplier Id</a>
+                <a th:href="@{'/employeePage/' + ${currentPage} + '?sortField=address&sortDir=' + ${reverseSortDir}}">
+                    Supplier Address</a>
             </th>
             <th> Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="item : ${listItems}">
-            <td th:text="${item.itemDescription}"></td>
-            <td th:text="${item.unitOfMeasure}"></td>
-            <td th:text="${item.unitPrice}"></td>
-            <td th:text="${item.supplierId}"></td>
+        <tr th:each="employee : ${listEmployees}">
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.email}"></td>
+            <td th:text="${employee.approvalLevel.id}"></td>
             <td><button type="button" class="btn btn-warning" data-toggle="modal" th:id="edit" data-target="#editModal">Update</button>
-                <a class="btn btn-danger" th:href="@{/deleteItem/{id}(id=${item.id})}">Delete</a>
-                <input type="hidden" id="id" th:value="${item.id}">
+                <a class="btn btn-danger" th:href="@{/deleteEmployee/{id}(id=${employee.id})}">Delete</a>
+                <input type="hidden" id="id" th:value="${employee.id}">
             </td>
         </tr>
         </tbody>
     </table>
 
-    <!--    add new item detail modal-->
+    <!--    add new employee detail modal-->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
-        <form action="#" method="POST" th:action="@{/saveItem}"
-              th:object="${item}">
+        <form action="#" method="POST" th:action="@{/saveEmployee}"
+              th:object="${employee}">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New Item</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">New Employee</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -96,24 +91,24 @@
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label for="item-description" class="col-form-label">Item Description:</label>
-                            <input class="form-control" placeholder="Item Description"
-                                   th:field="*{itemDescription}" type="text" id="item-description" required="required">
+                            <label for="employee-first-name" class="col-form-label">Employee First Name:</label>
+                            <input class="form-control" placeholder="Supplier Name"
+                                   th:field="*{firstName}" type="text" id="employee-first-name" required="required">
                         </div>
                         <div class="form-group">
-                            <label for="item-unitOfMeasure" class="col-form-label">Item Unit of Measure:</label>
-                            <input class="form-control" placeholder="Unit of Measure"
-                                   th:field="*{unitOfMeasure}" type="text" id="item-unitOfMeasure" required="required">
+                            <label for="employee-last-name" class="col-form-label">Employee Last Name:</label>
+                            <input class="form-control" placeholder="Supplier Mobile"
+                                   th:field="*{lastName}" type="text" id="employee-last-name" required="required">
                         </div>
                         <div class="form-group">
-                            <label for="item-unitPrice" class="col-form-label">Item Unit Price:</label>
+                            <label for="employee-email" class="col-form-label">Employee Email Address:</label>
+                            <input class="form-control" placeholder="Supplier Mobile"
+                                   th:field="*{email}" type="text" id="employee-email" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="employee-approvalId" class="col-form-label">Approval Level:</label>
                             <input class="form-control" placeholder="Supplier Address"
-                                   th:field="*{unitPrice}" type="text" id="item-unitPrice" required="required">
-                        </div>
-                        <div class="form-group">
-                            <label for="item-supplierId" class="col-form-label">Item Supplier Id:</label>
-                            <input class="form-control" placeholder="Supplier Address"
-                                   th:field="*{supplierId}" type="text" id="item-supplierId" required="required">
+                                   th:field="*{approvalLevel.id}" type="text" id="employee-approvalId" required="required">
                         </div>
 
                     </div>
@@ -126,15 +121,15 @@
         </form>
     </div>
 
-    <!--    edit existing item detail modal-->
+    <!--    edit existing employee detail modal-->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
-        <form action="#" method="POST" th:action="@{/saveItem}"
-              th:object="${item}">
+        <form action="#" method="POST" th:action="@{/saveEmployee}"
+              th:object="${employee}">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Update Item Details</h5>
+                        <h5 class="modal-title" id="editModalLabel">Update Employee</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -143,24 +138,24 @@
                         <input th:field="*{id}" type="hidden" id="editId" >
 
                         <div class="form-group">
-                            <label for="itemDescription" class="col-form-label">Item Description:</label>
+                            <label for="employeeFirstName" class="col-form-label">Employee First Name:</label>
                             <input class="form-control" placeholder="Supplier Name"
-                                   th:field="*{itemDescription}" type="text" id="itemDescription" required="required">
+                                   th:field="*{firstName}" type="text" id="employeeFirstName" required="required">
                         </div>
                         <div class="form-group">
-                            <label for="itemUnitOfMeasure" class="col-form-label">Item Unit of Measure:</label>
+                            <label for="employeeLastName" class="col-form-label">Employee Last Name:</label>
                             <input class="form-control" placeholder="Supplier Mobile"
-                                   th:field="*{unitOfMeasure}" type="text" id="itemUnitOfMeasure" required="required">
+                                   th:field="*{lastName}" type="text" id="employeeLastName" required="required">
                         </div>
                         <div class="form-group">
-                            <label for="itemUnitPrice" class="col-form-label">Item Unit of Price:</label>
-                            <input class="form-control" placeholder="Supplier Address"
-                                   th:field="*{unitPrice}" type="text" id="itemUnitPrice" required="required">
+                            <label for="employeeEmail" class="col-form-label">Employee Email Address:</label>
+                            <input class="form-control" placeholder="Supplier Mobile"
+                                   th:field="*{email}" type="text" id="employeeEmail" required="required">
                         </div>
                         <div class="form-group">
-                            <label for="itemSupplierId" class="col-form-label">Item Supplier Id:</label>
+                            <label for="employeeApprovalId" class="col-form-label">Approval Level:</label>
                             <input class="form-control" placeholder="Supplier Address"
-                                   th:field="*{supplierId}" type="text" id="itemSupplierId" required="required">
+                                   th:field="*{approvalLevel.id}" type="text" id="employeeApprovalId" required="required">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -179,19 +174,19 @@
             </div>
             <div class="col-sm-1">
 					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
-						<a th:href="@{'/itemPage/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"
+						<a th:href="@{'/employeePage/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"
                            th:if="${currentPage != i}">[[${i}]]</a>
 						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
 					</span>
             </div>
             <div class="col-sm-1">
-                <a th:href="@{'/itemPage/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"
+                <a th:href="@{'/employeePage/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"
                    th:if="${currentPage < totalPages}">Next</a>
                 <span th:unless="${currentPage < totalPages}">Next</span>
             </div>
 
             <div class="col-sm-1">
-                <a th:href="@{'/itemPage/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"
+                <a th:href="@{'/employeePage/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"
                    th:if="${currentPage < totalPages}">Last</a>
                 <span th:unless="${currentPage < totalPages}">Last</span>
             </div>

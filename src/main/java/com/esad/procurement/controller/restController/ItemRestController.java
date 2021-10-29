@@ -1,4 +1,4 @@
-package com.esad.procurement.controller;
+package com.esad.procurement.controller.restController;
 
 import com.esad.procurement.entity.Item;
 import com.esad.procurement.service.ItemService;
