@@ -25,10 +25,10 @@ public class Employee {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    /*@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "level_id", referencedColumnName = "id")
     private ApprovalLevel approvalLevel;
 
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<PurchaseRequest> purchaseRequest;
+    private Set<PurchaseRequest> purchaseRequest;*/
 }

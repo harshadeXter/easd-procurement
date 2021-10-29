@@ -22,10 +22,12 @@
                     type: 'GET',
                     url: "http://localhost:8080/api/v1/employee/find/" + id,
                     success: function (employee) {
+                        console.log(this.url);
                         $('#editModal #editId').val(employee.id);
-                        $('#editModal #supplierName').val(employee.supplierName);
-                        $('#editModal #phone').val(employee.phone);
-                        $('#editModal #address').val(employee.address);
+                        $('#editModal #employeeFirstName').val(employee.firstName);
+                        $('#editModal #employeeLastName').val(employee.lastName);
+                        $('#editModal #employeeEmail').val(employee.email);
+                        //$('#editModal #employeeApprovalId').val(employee.approvalLevel);
                     }
                 });
             })
@@ -48,15 +50,19 @@
         <tr>
             <th>
                 <a th:href="@{'/employeePage/' + ${currentPage} + '?sortField=supplierName&sortDir=' + ${reverseSortDir}}">
-                    Supplier Name</a>
+                    Employee First Name</a>
+            </th>
+            <th>
+                <a th:href="@{'/employeePage/' + ${currentPage} + '?sortField=supplierName&sortDir=' + ${reverseSortDir}}">
+                    Employee Last Name</a>
             </th>
             <th>
                 <a th:href="@{'/employeePage/' + ${currentPage} + '?sortField=phone&sortDir=' + ${reverseSortDir}}">
-                    Supplier Mobile</a>
+                    Employee Email</a>
             </th>
             <th>
                 <a th:href="@{'/employeePage/' + ${currentPage} + '?sortField=address&sortDir=' + ${reverseSortDir}}">
-                    Supplier Address</a>
+                    Employee Approval Level</a>
             </th>
             <th> Actions</th>
         </tr>
@@ -66,7 +72,7 @@
             <td th:text="${employee.firstName}"></td>
             <td th:text="${employee.lastName}"></td>
             <td th:text="${employee.email}"></td>
-            <td th:text="${employee.approvalLevel.id}"></td>
+<!--            <td th:text="${employee.approvalLevel.id}"></td>-->
             <td><button type="button" class="btn btn-warning" data-toggle="modal" th:id="edit" data-target="#editModal">Update</button>
                 <a class="btn btn-danger" th:href="@{/deleteEmployee/{id}(id=${employee.id})}">Delete</a>
                 <input type="hidden" id="id" th:value="${employee.id}">
@@ -92,24 +98,24 @@
 
                         <div class="form-group">
                             <label for="employee-first-name" class="col-form-label">Employee First Name:</label>
-                            <input class="form-control" placeholder="Supplier Name"
+                            <input class="form-control" placeholder="Employee First Name"
                                    th:field="*{firstName}" type="text" id="employee-first-name" required="required">
                         </div>
                         <div class="form-group">
                             <label for="employee-last-name" class="col-form-label">Employee Last Name:</label>
-                            <input class="form-control" placeholder="Supplier Mobile"
+                            <input class="form-control" placeholder="Employee Last Name"
                                    th:field="*{lastName}" type="text" id="employee-last-name" required="required">
                         </div>
                         <div class="form-group">
                             <label for="employee-email" class="col-form-label">Employee Email Address:</label>
-                            <input class="form-control" placeholder="Supplier Mobile"
+                            <input class="form-control" placeholder="Employee Email"
                                    th:field="*{email}" type="text" id="employee-email" required="required">
                         </div>
-                        <div class="form-group">
-                            <label for="employee-approvalId" class="col-form-label">Approval Level:</label>
-                            <input class="form-control" placeholder="Supplier Address"
-                                   th:field="*{approvalLevel.id}" type="text" id="employee-approvalId" required="required">
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label for="employee-approvalId" class="col-form-label">Approval Level:</label>-->
+<!--                            <input class="form-control" placeholder="Employee Approval Level"-->
+<!--                                   th:field="*{approvalLevel.id}" type="text" id="employee-approvalId" required="required">-->
+<!--                        </div>-->
 
                     </div>
                     <div class="modal-footer">
@@ -152,11 +158,11 @@
                             <input class="form-control" placeholder="Supplier Mobile"
                                    th:field="*{email}" type="text" id="employeeEmail" required="required">
                         </div>
-                        <div class="form-group">
-                            <label for="employeeApprovalId" class="col-form-label">Approval Level:</label>
-                            <input class="form-control" placeholder="Supplier Address"
-                                   th:field="*{approvalLevel.id}" type="text" id="employeeApprovalId" required="required">
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label for="employeeApprovalId" class="col-form-label">Approval Level:</label>-->
+<!--                            <input class="form-control" placeholder="Supplier Address"-->
+<!--                                   th:field="*{approvalLevel.id}" type="text" id="employeeApprovalId" required="required">-->
+<!--                        </div>-->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
