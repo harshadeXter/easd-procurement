@@ -2,6 +2,8 @@ package com.esad.procurement.service;
 
 import com.esad.procurement.entity.PurchaseOrderLine;
 import com.esad.procurement.entity.PurchaseRequestLines;
+import com.esad.procurement.entity.ReturnSupplierInvoice;
+import com.esad.procurement.repository.PurchaeOrderLineRepository;
 import com.esad.procurement.repository.ReturnSupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,11 +20,23 @@ public class ReturnSupplierServiceImpl implements ReturnSupplierService {
     @Autowired
     private ReturnSupplierRepository returnSupplierRepository;
 
+    @Autowired
+    private PurchaeOrderLineRepository purchaeOrderLineRepository;
+
     @Override
-    public List<PurchaseOrderLine> getAllLines() {
+    public List<ReturnSupplierInvoice> getSupplierInvoice() {
         return returnSupplierRepository.findAll();
     }
 
+    @Override
+    public List<PurchaseOrderLine> getPurchaseOrderLine() {
+        return purchaeOrderLineRepository.findAll();
+    }
+
+    @Override
+    public void saveReturnSupplierInvoice(ReturnSupplierInvoice returnSupplierInvoice) {
+        this.returnSupplierRepository.save(returnSupplierInvoice);
+    }
 
     @Override
     public Page<PurchaseOrderLine> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
@@ -30,7 +44,7 @@ public class ReturnSupplierServiceImpl implements ReturnSupplierService {
                 Sort.by(sortField).descending();
 
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-        return this.returnSupplierRepository.findAll(pageable);
+        return this.purchaeOrderLineRepository.findAll(pageable);
     }
 
 }

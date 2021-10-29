@@ -13,50 +13,49 @@
 
 <div class="container my-2">
     <h1>Return Supplier Invoice - Refund</h1>
-
-    <form action="#" method="POST" th:action="@{/returnSupplierInvoice}" th:object="${returnSupplierInvoice}">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-md-10 mx-auto">
-                    <form>
-                        <div class="form-group row">
-                            <div class="col-sm-6">
-                                <label for="returnSupplierInvoice">Return Supplier Invoice No</label>
-                                <input  id="returnSupplierInvoice" class="form-control" placeholder="Return Supplier Invoice No" th:field="*{returnSupplierInvoice}" type="text">
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="supplierInvoice"> Supplier Invoice No</label>
-                                <input id="supplierInvoice" class="form-control" placeholder="Supplier Invoice No"  th:field="*{supplierInvoice}" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6">
-                                <label for="poRef">PO Ref</label>
-                                <input id="poRef" class="form-control" placeholder="PO Ref" th:field="*{poRef}" type="text">
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="supplier"> Supplier</label>
-                                <input id="supplier" class="form-control" placeholder="Supplier" th:field="*{supplier}" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6">
-                                <label for="paidBy">Paid By</label>
-                                <input id="paidBy" class="form-control" placeholder="Paid By" th:field="*{paidBy}" type="text">
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="paidOn">Paid On</label>
-                                <input id="paidOn" class="form-control" placeholder="Paid On" th:field="*{paidOn}" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6">
-                                <label for="totalAmount">Total Amount</label>
-                                <input id="totalAmount" class="form-control" placeholder="Total Amount" th:field="*{totalAmount}" type="text">
-                            </div>
-                        </div>
-                        <button class="btn btn-info col-2" type="submit"> Return Invoice</button>
-                    </form>
+<!--    <form action="#" method="POST" th:action="@{/saveSupplierInvoice}" th:object="${returnSupplierInvoice}">-->
+<!--        <div class="container py-5">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-10 mx-auto">-->
+<!--                    <form>-->
+<!--                        <div class="form-group row">-->
+<!--                            <div class="col-sm-6">-->
+<!--                                <label for="id;">Return Supplier Invoice No</label>-->
+<!--                                <input  id="id;" class="form-control" placeholder="Return Supplier Invoice No" th:field="*{id}" type="text">-->
+<!--                            </div>-->
+<!--                            <div class="col-sm-6">-->
+<!--                                <label for="invoiceId"> Supplier Invoice No</label>-->
+<!--                                <input id="invoiceId" class="form-control" placeholder="Supplier Invoice No"  th:field="*{invoiceId}" type="text">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="form-group row">-->
+<!--                            <div class="col-sm-6">-->
+<!--                                <label for="poReference;">PO Ref</label>-->
+<!--                                <input id="poReference;" class="form-control" placeholder="PO Ref" th:field="*{poReference}" type="text">-->
+<!--                            </div>-->
+<!--                            <div class="col-sm-6">-->
+<!--                                <label for="supplierReference;"> Supplier</label>-->
+<!--                                <input id="supplierReference;" class="form-control" placeholder="Supplier" th:field="*{supplierReference}" type="text">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="form-group row">-->
+<!--                            <div class="col-sm-6">-->
+<!--                                <label for="paidBy">Paid By</label>-->
+<!--                                <input id="paidBy" class="form-control" placeholder="Paid By" th:field="*{paidBy}" type="text">-->
+<!--                            </div>-->
+<!--                            <div class="col-sm-6">-->
+<!--                                <label for="paidOn">Paid On</label>-->
+<!--                                <input id="paidOn" class="form-control" placeholder="Paid On" th:field="*{paidOn}" type="text">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="form-group row">-->
+<!--                            <div class="col-sm-6">-->
+<!--                                <label for="totalAmount">Total Amount</label>-->
+<!--                                <input id="totalAmount" class="form-control" placeholder="Total Amount" th:field="*{totalAmount}" type="text">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <button class="btn btn-info col-2" type="submit"> Return Invoice</button>-->
+<!--                    </form>-->
                 </div>
             </div>
         </div>

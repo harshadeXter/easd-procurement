@@ -21,13 +21,11 @@ public class ReturnSupplierInvoiceController {
         return findPaginated(1, "id", "asc", model);
     }
 
-    @PostMapping("/returnSupplierInvoice")
+    @PostMapping("/saveSupplierInvoice")
     public String saveReturnSupplier(@ModelAttribute("return_supplier_invoices") ReturnSupplierInvoice returnSupplierInvoice) {
-        // save employee to database
-        returnSupplierService.saveEmployee(employee);
+        returnSupplierService.saveReturnSupplierInvoice(returnSupplierInvoice);
         return "redirect:/";
     }
-
 
     @GetMapping("/returnSupplier")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
@@ -38,7 +36,7 @@ public class ReturnSupplierInvoiceController {
 
             Page<PurchaseOrderLine> page = returnSupplierService.findPaginated(pageNo, pageSize, sortField, sortDir);
             List<PurchaseOrderLine> listPurchaseLines = page.getContent();
-        PurchaseOrderLine requestLines = new PurchaseOrderLine();
+            PurchaseOrderLine requestLines = new PurchaseOrderLine();
 
             model.addAttribute("requestLines", requestLines);
             model.addAttribute("currentPage", pageNo);
@@ -52,5 +50,4 @@ public class ReturnSupplierInvoiceController {
             model.addAttribute("listPurchaseLines", listPurchaseLines);
             return "return_sup_invoice";
         }
-
     }
