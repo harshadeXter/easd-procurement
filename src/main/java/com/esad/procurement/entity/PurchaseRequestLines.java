@@ -21,8 +21,6 @@ public class PurchaseRequestLines {
     @Column(name = "purchase_request_id")
     private long purchaseRequestId;
 
-    @Column(name = "item_id")
-    private long itemId;
 
     @Column(name = "item_description")
     private String itemDescription;

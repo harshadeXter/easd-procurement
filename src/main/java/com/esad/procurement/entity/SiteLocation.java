@@ -23,6 +23,6 @@ public class SiteLocation {
     @Column(name = "delivery_address")
     private String deliveryAddress;
 
-    @OneToMany(mappedBy = "sites", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "siteLocation", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<PurchaseRequest> purchaseRequests;
 }
