@@ -58,4 +58,11 @@ public class ReturnSupplierInvoiceController {
         returnSupplierService.saveReturnSupplierInvoice(returnSupplierInvoice);
         return "redirect:/returnSupplierInvoice";
     }
+
+
+    @PostMapping("/updatePOLine")
+    public String updatePOLine(@ModelAttribute("purchaseOrderLine") PurchaseOrderLine purchaseOrderLine) {
+        returnSupplierService.savepurchaseOrderLine(purchaseOrderLine);
+        return "redirect:/returnSupplierInvoice";
+    }
 }

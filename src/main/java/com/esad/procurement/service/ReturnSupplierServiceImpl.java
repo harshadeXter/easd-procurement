@@ -53,12 +53,26 @@ public class ReturnSupplierServiceImpl implements ReturnSupplierService {
     }
 
     @Override
+    public void savepurchaseOrderLine(PurchaseOrderLine purchaseOrderLine) {
+        this.purchaseOrderLineRepository.save(purchaseOrderLine);
+    }
+
+    @Override
     public Page<PurchaseOrderLine> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
                 Sort.by(sortField).descending();
 
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.purchaseOrderLineRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<ReturnSupplierInvoice> findReturnSupplierInvoice(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        return this.returnSupplierRepository.findAll(pageable);
     }
 
 }

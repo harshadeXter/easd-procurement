@@ -16,5 +16,9 @@ public interface ReturnSupplierService {
 
     void saveReturnSupplierInvoice(ReturnSupplierInvoice returnSupplierInvoice);
 
+    void savepurchaseOrderLine(PurchaseOrderLine purchaseOrderLine);
+
     Page<PurchaseOrderLine> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
+
+    Page<ReturnSupplierInvoice> findReturnSupplierInvoice(int pageNo, int pageSize, String sortField, String sortDirection);
 }
