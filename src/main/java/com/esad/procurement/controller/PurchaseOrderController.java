@@ -2,6 +2,7 @@ package com.esad.procurement.controller;
 
 
 import com.esad.procurement.service.PurchaseOrderService;
+import com.esad.procurement.entity.PurchaseOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -11,40 +12,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class PurchaseOrder {
+public class PurchaseOrderController {
     @Autowired
     private PurchaseOrderService purchaseOrderService;
 
-    @GetMapping("/items")
+    @GetMapping("/purchaseOrder")
     public String viewItemListPage(Model model) {
        PurchaseOrder purchaseOrder= new PurchaseOrder();
-        model.addAttribute("item", purchaseOrder);
-        return findPaginated(1, "itemDescription", "asc", model);
+        model.addAttribute("purchaseOrder", purchaseOrder);
+        return findPaginated(1, "id", "asc", model);
     }
 
-    @PostMapping("/saveItem")
-    public String saveItem(@ModelAttribute("item") com.esad.procurement.entity.PurchaseOrder purchaseOrder) {
+    @PostMapping("/purchaseOderSave")
+    public String saveItem(@ModelAttribute("purchaseOder") PurchaseOrder purchaseOrder){
         purchaseOrderService.savePurchaseDetails(purchaseOrder);
-        return "redirect:/items";
+        return "redirect:/purchaseOrder";
     }
 
-    @GetMapping("/deleteItem/{id}")
+    @GetMapping("/purchaseOderDelete/{id}")
     public String deleteItem(@PathVariable(value = "id") long id) {
-        this.itemService.removeItem(id);
-        return "redirect:/items";
+        this.purchaseOrderService.removePurchase(id);
+        return "redirect:/purchaseOrder";
     }
 
-    @GetMapping("/itemPage/{pageNo}")
+    @GetMapping("/purchaseOderPage/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
         int pageSize = 5;
 
-        Page<Item> page = itemService.findPaginated(pageNo, pageSize, sortField, sortDir);
-        List<Item> listItems = page.getContent();
+        Page<PurchaseOrder> page = purchaseOrderService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        List<PurchaseOrder> listPurchaseOder = page.getContent();
 
-        System.out.println("page content " + listItems);
+        System.out.println("page content " + listPurchaseOder);
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
@@ -54,9 +55,9 @@ public class PurchaseOrder {
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
-        model.addAttribute("listItems", listItems);
+        model.addAttribute("listPurchaseOder", listPurchaseOder);
         System.out.println("modal " + model);
-        return "items";
+        return "purchaseOrder";
     }
 
 
