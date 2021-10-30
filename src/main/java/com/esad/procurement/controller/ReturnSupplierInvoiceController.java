@@ -1,5 +1,6 @@
 package com.esad.procurement.controller;
 
+import com.esad.procurement.entity.Item;
 import com.esad.procurement.entity.PurchaseOrderLine;
 import com.esad.procurement.entity.ReturnSupplierInvoice;
 import com.esad.procurement.service.ReturnSupplierService;
@@ -16,15 +17,21 @@ public class ReturnSupplierInvoiceController {
     @Autowired
     private ReturnSupplierService returnSupplierService;
 
-    @GetMapping("/")
-    public String viewHomePage(Model model) {
-        return findPaginated(1, "id", "asc", model);
-    }
+    @GetMapping("/returnSupplierInvoice")
+    public String viewReturnSupplierInvoice(Model model) {
 
-    @PostMapping("/saveSupplierInvoice")
-    public String saveReturnSupplier(@ModelAttribute("return_supplier_invoices") ReturnSupplierInvoice returnSupplierInvoice) {
-        returnSupplierService.saveReturnSupplierInvoice(returnSupplierInvoice);
-        return "redirect:/";
+        ReturnSupplierInvoice returnSupplierInvoice = new ReturnSupplierInvoice();
+        PurchaseOrderLine purchaseOrderLine = new PurchaseOrderLine();
+        model.addAttribute("purchaseOrderLine", purchaseOrderLine);
+        model.addAttribute("returnSupplierInvoice", returnSupplierInvoice);
+        model.addAttribute("id", returnSupplierInvoice.getId());
+        model.addAttribute("invoiceId", returnSupplierInvoice.getInvoiceId());
+        model.addAttribute("poReference", returnSupplierInvoice.getPoReference());
+        model.addAttribute("supplierReference", returnSupplierInvoice.getSupplierReference());
+        model.addAttribute("paidBy", returnSupplierInvoice.getPaidBy());
+        model.addAttribute("paidOn", returnSupplierInvoice.getPaidOn());
+        model.addAttribute("totalAmount", returnSupplierInvoice.getTotalAmount());
+        return findPaginated(1, "id", "asc", model);
     }
 
     @GetMapping("/returnSupplier")
@@ -33,21 +40,22 @@ public class ReturnSupplierInvoiceController {
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
             int pageSize = 5;
-
             Page<PurchaseOrderLine> page = returnSupplierService.findPaginated(pageNo, pageSize, sortField, sortDir);
             List<PurchaseOrderLine> listPurchaseLines = page.getContent();
-            PurchaseOrderLine requestLines = new PurchaseOrderLine();
-
-            model.addAttribute("requestLines", requestLines);
             model.addAttribute("currentPage", pageNo);
             model.addAttribute("totalPages", page.getTotalPages());
             model.addAttribute("totalItems", page.getTotalElements());
-
             model.addAttribute("sortField", sortField);
             model.addAttribute("sortDir", sortDir);
             model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-
             model.addAttribute("listPurchaseLines", listPurchaseLines);
+
             return "return_sup_invoice";
         }
+
+    @PostMapping("/saveSupplierInvoice")
+    public String saveReturnSupplier(@ModelAttribute("returnSupplierInvoice") ReturnSupplierInvoice returnSupplierInvoice) {
+        returnSupplierService.saveReturnSupplierInvoice(returnSupplierInvoice);
+        return "redirect:/returnSupplierInvoice";
     }
+}

@@ -1,9 +1,6 @@
 package com.esad.procurement.service;
 
-import com.esad.procurement.entity.PurchaseOrderLine;
-import com.esad.procurement.entity.PurchaseRequest;
-import com.esad.procurement.entity.PurchaseRequestLines;
-import com.esad.procurement.entity.ReturnSupplierInvoice;
+import com.esad.procurement.entity.*;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -14,6 +11,8 @@ public interface ReturnSupplierService {
     List<PurchaseOrderLine> getPurchaseOrderLine();
 
     List<ReturnSupplierInvoice> getSupplierInvoice();
+
+    PurchaseOrderLine getPOLineById(long id);
 
     void saveReturnSupplierInvoice(ReturnSupplierInvoice returnSupplierInvoice);
 

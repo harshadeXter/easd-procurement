@@ -27,8 +27,6 @@ public class Shipment {
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private PurchaseOrder purchaseOrder;
 
-    @OneToMany(mappedBy = "shipment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<ShipmentLines> shipmentLines;
-
-    //
+//    @OneToMany(mappedBy = "shipment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private Set<ShipmentLines> shipmentLines;
 }
