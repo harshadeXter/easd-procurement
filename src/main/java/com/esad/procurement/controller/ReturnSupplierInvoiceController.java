@@ -56,6 +56,6 @@ public class ReturnSupplierInvoiceController {
     @PostMapping("/saveSupplierInvoice")
     public String saveReturnSupplier(@ModelAttribute("returnSupplierInvoice") ReturnSupplierInvoice returnSupplierInvoice) {
         returnSupplierService.saveReturnSupplierInvoice(returnSupplierInvoice);
-        return "redirect:/";
+        return "redirect:/returnSupplierInvoice";
     }
 }
