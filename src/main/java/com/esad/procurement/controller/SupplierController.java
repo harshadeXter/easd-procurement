@@ -40,7 +40,7 @@ public class SupplierController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-        int pageSize = 5;
+        int pageSize = 15;
 
         Page<Supplier> page = supplierService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Supplier> listSuppliers = page.getContent();

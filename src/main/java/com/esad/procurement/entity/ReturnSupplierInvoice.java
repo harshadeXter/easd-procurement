@@ -29,6 +29,9 @@ public class ReturnSupplierInvoice {
     @Column(name = "paid_by")
     private String paidBy;
 
+    @Column(name = "paid_on")
+    private String paidOn;
+
     @Column(name = "total_amount")
     private Double totalAmount;
 

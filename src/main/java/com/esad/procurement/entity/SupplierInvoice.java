@@ -29,6 +29,6 @@ public class SupplierInvoice {
     @Column(name = "total_amount")
     private Double totalAmount;
 
-    @OneToMany(mappedBy = "supplierInvoice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<SupplierInvoiceLine> SupplierInvoiceLines;
+//    @OneToMany(mappedBy = "supplierInvoice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private Set<SupplierInvoiceLine> SupplierInvoiceLines;
 }

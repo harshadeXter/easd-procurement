@@ -39,12 +39,10 @@ public class ItemController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-        int pageSize = 5;
+        int pageSize = 15;
 
         Page<Item> page = itemService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Item> listItems = page.getContent();
-
-        System.out.println("page content " + listItems);
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
@@ -55,7 +53,6 @@ public class ItemController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("listItems", listItems);
-        System.out.println("modal " + model);
         return "items";
     }
 }

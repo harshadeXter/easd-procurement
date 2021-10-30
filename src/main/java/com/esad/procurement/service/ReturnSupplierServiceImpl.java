@@ -1,9 +1,9 @@
 package com.esad.procurement.service;
 
+import com.esad.procurement.entity.Item;
 import com.esad.procurement.entity.PurchaseOrderLine;
-import com.esad.procurement.entity.PurchaseRequestLines;
 import com.esad.procurement.entity.ReturnSupplierInvoice;
-import com.esad.procurement.repository.PurchaeOrderLineRepository;
+import com.esad.procurement.repository.PurchaseOrderLineRepository;
 import com.esad.procurement.repository.ReturnSupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReturnSupplierServiceImpl implements ReturnSupplierService {
@@ -21,7 +22,7 @@ public class ReturnSupplierServiceImpl implements ReturnSupplierService {
     private ReturnSupplierRepository returnSupplierRepository;
 
     @Autowired
-    private PurchaeOrderLineRepository purchaeOrderLineRepository;
+    private PurchaseOrderLineRepository purchaseOrderLineRepository;
 
     @Override
     public List<ReturnSupplierInvoice> getSupplierInvoice() {
@@ -30,7 +31,20 @@ public class ReturnSupplierServiceImpl implements ReturnSupplierService {
 
     @Override
     public List<PurchaseOrderLine> getPurchaseOrderLine() {
-        return purchaeOrderLineRepository.findAll();
+        return purchaseOrderLineRepository.findAll();
+    }
+
+    @Override
+    public PurchaseOrderLine getPOLineById(long id) {
+        PurchaseOrderLine purchaseOrderLine = null;
+        Optional<PurchaseOrderLine> existLine = purchaseOrderLineRepository.findById(id);
+
+        if (existLine.isPresent()) {
+            purchaseOrderLine = existLine.get();
+        } else {
+            throw new RuntimeException(" No Item found for id : " + id);
+        }
+        return purchaseOrderLine;
     }
 
     @Override
@@ -39,12 +53,26 @@ public class ReturnSupplierServiceImpl implements ReturnSupplierService {
     }
 
     @Override
+    public void savepurchaseOrderLine(PurchaseOrderLine purchaseOrderLine) {
+        this.purchaseOrderLineRepository.save(purchaseOrderLine);
+    }
+
+    @Override
     public Page<PurchaseOrderLine> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
                 Sort.by(sortField).descending();
 
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-        return this.purchaeOrderLineRepository.findAll(pageable);
+        return this.purchaseOrderLineRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<ReturnSupplierInvoice> findReturnSupplierInvoice(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        return this.returnSupplierRepository.findAll(pageable);
     }
 
 }

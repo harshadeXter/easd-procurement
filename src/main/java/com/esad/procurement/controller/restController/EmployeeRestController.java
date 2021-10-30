@@ -25,5 +25,4 @@ public class EmployeeRestController {
             return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
         }
     }
-
 }

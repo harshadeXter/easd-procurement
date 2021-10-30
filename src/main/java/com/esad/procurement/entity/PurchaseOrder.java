@@ -48,7 +48,7 @@ public class PurchaseOrder {
     @OneToOne(mappedBy = "purchaseOrder")
     private Shipment shipment;
 
-    @OneToMany(mappedBy = "purchaseOrder", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<PurchaseOrderLine> purchaseOrderLines;
+//   @OneToMany(mappedBy = "purchaseOrder", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//   private Set<PurchaseOrderLine> purchaseOrderLines;
 
 }
