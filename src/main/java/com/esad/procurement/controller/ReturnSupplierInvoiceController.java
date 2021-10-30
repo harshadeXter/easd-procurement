@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -16,7 +17,7 @@ public class ReturnSupplierInvoiceController {
     @Autowired
     private ReturnSupplierService returnSupplierService;
 
-    @GetMapping("/")
+    @GetMapping("/returnInvoice")
     public String viewHomePage(Model model) {
         return findPaginated(1, "id", "asc", model);
     }
@@ -24,7 +25,7 @@ public class ReturnSupplierInvoiceController {
     @PostMapping("/saveSupplierInvoice")
     public String saveReturnSupplier(@ModelAttribute("return_supplier_invoices") ReturnSupplierInvoice returnSupplierInvoice) {
         returnSupplierService.saveReturnSupplierInvoice(returnSupplierInvoice);
-        return "redirect:/";
+        return "redirect:/returnInvoice";
     }
 
     @GetMapping("/returnSupplier")
@@ -32,22 +33,22 @@ public class ReturnSupplierInvoiceController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-            int pageSize = 5;
+        int pageSize = 5;
 
-            Page<PurchaseOrderLine> page = returnSupplierService.findPaginated(pageNo, pageSize, sortField, sortDir);
-            List<PurchaseOrderLine> listPurchaseLines = page.getContent();
-            PurchaseOrderLine requestLines = new PurchaseOrderLine();
+        Page<PurchaseOrderLine> page = returnSupplierService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        List<PurchaseOrderLine> listPurchaseLines = page.getContent();
+        PurchaseOrderLine requestLines = new PurchaseOrderLine();
 
-            model.addAttribute("requestLines", requestLines);
-            model.addAttribute("currentPage", pageNo);
-            model.addAttribute("totalPages", page.getTotalPages());
-            model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("requestLines", requestLines);
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
 
-            model.addAttribute("sortField", sortField);
-            model.addAttribute("sortDir", sortDir);
-            model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
-            model.addAttribute("listPurchaseLines", listPurchaseLines);
-            return "return_sup_invoice";
-        }
+        model.addAttribute("listPurchaseLines", listPurchaseLines);
+        return "return_sup_invoice";
     }
+}
