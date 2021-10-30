@@ -39,7 +39,7 @@
     <h1>Shipment List</h1>
     <hr>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add New</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Create Shipment</button>
 
     <hr>
 
@@ -54,6 +54,14 @@
                 <a th:href="@{'/shipmentPage/' + ${currentPage} + '?sortField=shipmentReceiveBy&sortDir=' + ${reverseSortDir}}">
                     Shipment Received By</a>
             </th>
+            <th>
+                <a th:href="@{'/shipmentPage/' + ${currentPage} + '?sortField=shipmentReceiveBy&sortDir=' + ${reverseSortDir}}">
+                    Purchase Order Id</a>
+            </th>
+            <th>
+                <a th:href="@{'/shipmentPage/' + ${currentPage} + '?sortField=shipmentReceiveBy&sortDir=' + ${reverseSortDir}}">
+                    Shipment Line Id</a>
+            </th>
             <th> Actions</th>
         </tr>
         </thead>
@@ -61,6 +69,8 @@
         <tr th:each="shipment : ${listShipments}">
             <td th:text="${shipment.receivedDate}"></td>
             <td th:text="${shipment.receivedBy}"></td>
+            <td></td>
+            <td></td>
             <td>
                 <button type="button" class="btn btn-warning" data-toggle="modal" th:id="edit" data-target="#editModal">
                     Update
