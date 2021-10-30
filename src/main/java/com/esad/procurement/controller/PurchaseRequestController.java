@@ -1,6 +1,5 @@
 package com.esad.procurement.controller;
 
-import com.esad.procurement.entity.Item;
 import com.esad.procurement.entity.PurchaseRequest;
 import com.esad.procurement.service.PurchaseRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class PurchaseRequestController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-        int pageSize = 5;
+        int pageSize = 15;
 
         Page<PurchaseRequest> page = purchaseRequestService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<PurchaseRequest> listPurchaseRequest = page.getContent();

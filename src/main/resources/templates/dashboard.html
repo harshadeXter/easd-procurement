@@ -22,60 +22,60 @@
 
 <body class="fixed-nav sticky-footer bg-dark sidenav-toggled" id="page-top">
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="/">Procurement System</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-            aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Employees Management">
-                <a class="nav-link" href="employees">
-                    <i class="fa fa-fw fa-dashboard"></i>
-                    <span class="nav-link-text">Employees Management</span>
-                </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Items Management">
-                <a class="nav-link" href="items">
-                    <i class="fa fa-fw fa-dashboard"></i>
-                    <span class="nav-link-text">Items Management</span>
-                </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Create Purses Orders">
-                <a class="nav-link" href="purchaseOrder">
-                    <i class="fa fa-fw fa-dashboard"></i>
-                    <span class="nav-link-text">Create Purses Orders</span>
-                </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Create Invoice">
-                <a class="nav-link" href="invoices">
-                    <i class="fa fa-fw fa-area-chart"></i>
-                    <span class="nav-link-text">Create Invoice</span>
-                </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Create Shipment">
-                <a class="nav-link" href="shipments">
-                    <i class="fa fa-fw fa-table"></i>
-                    <span class="nav-link-text">Create Shipment</span>
-                </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Suppliers Management">
-                <a class="nav-link" href="suppliers">
-                    <i class="fa fa-fw fa-table"></i>
-                    <span class="nav-link-text">Suppliers Management</span>
-                </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Return Suppliers Management">
-                <a class="nav-link" href="returnSupplierInvoice">
-                    <i class="fa fa-fw fa-table"></i>
-                    <span class="nav-link-text">Return Suppliers Management</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">-->
+<!--    <a class="navbar-brand" href="/">Procurement System</a>-->
+<!--    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"-->
+<!--            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"-->
+<!--            aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarResponsive">-->
+<!--        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">-->
+<!--            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Employees Management">-->
+<!--                <a class="nav-link" href="employees">-->
+<!--                    <i class="fa fa-fw fa-dashboard"></i>-->
+<!--                    <span class="nav-link-text">Employees Management</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Items Management">-->
+<!--                <a class="nav-link" href="items">-->
+<!--                    <i class="fa fa-fw fa-dashboard"></i>-->
+<!--                    <span class="nav-link-text">Items Management</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Create Purchase Orders">-->
+<!--                <a class="nav-link" href="purchaseOrder">-->
+<!--                    <i class="fa fa-fw fa-dashboard"></i>-->
+<!--                    <span class="nav-link-text">Create Purchase Orders</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Create Invoice">-->
+<!--                <a class="nav-link" href="invoices">-->
+<!--                    <i class="fa fa-fw fa-area-chart"></i>-->
+<!--                    <span class="nav-link-text">Create Invoice</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Create Shipment">-->
+<!--                <a class="nav-link" href="shipments">-->
+<!--                    <i class="fa fa-fw fa-table"></i>-->
+<!--                    <span class="nav-link-text">Create Shipment</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Suppliers Management">-->
+<!--                <a class="nav-link" href="suppliers">-->
+<!--                    <i class="fa fa-fw fa-table"></i>-->
+<!--                    <span class="nav-link-text">Suppliers Management</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Return Suppliers Management">-->
+<!--                <a class="nav-link" href="returnSupplierInvoice">-->
+<!--                    <i class="fa fa-fw fa-table"></i>-->
+<!--                    <span class="nav-link-text">Return Suppliers Management</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</nav>-->
 <div class="content-wrapper">
     <!-- Icon Cards-->
     <div class="row">
@@ -104,6 +104,18 @@
             </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-warning o-hidden h-100">
+                <div class="card-body">
+                    <a class="nav-link" href="purchaseRequests">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw fa-list"></i>
+                        </div>
+                    </a>
+                    <div class="mr-5">Purchase Request Management</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-success o-hidden h-100">
                 <div class="card-body">
                     <a class="nav-link" href="purchaseOrder">
@@ -111,7 +123,7 @@
                             <i class="fa fa-fw fa-shopping-cart"></i>
                         </div>
                     </a>
-                    <div class="mr-5">Create Purses Orders</div>
+                    <div class="mr-5">Create Purchase Orders</div>
                 </div>
             </div>
         </div>

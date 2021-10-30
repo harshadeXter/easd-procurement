@@ -39,7 +39,7 @@ public class ItemController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-        int pageSize = 5;
+        int pageSize = 15;
 
         Page<Item> page = itemService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Item> listItems = page.getContent();

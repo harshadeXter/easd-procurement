@@ -39,7 +39,7 @@ public class InvoiceController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-        int pageSize = 5;
+        int pageSize = 15;
 
         Page<SupplierInvoice> page = invoiceService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<SupplierInvoice> listInvoices = page.getContent();

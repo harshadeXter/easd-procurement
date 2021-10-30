@@ -39,7 +39,7 @@ public class ShipmentController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-        int pageSize = 5;
+        int pageSize = 15;
 
         Page<Shipment> page = shipmentService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Shipment> listShipments = page.getContent();

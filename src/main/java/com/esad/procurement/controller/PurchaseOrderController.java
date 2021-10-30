@@ -40,7 +40,7 @@ public class PurchaseOrderController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-        int pageSize = 5;
+        int pageSize = 15;
 
         Page<PurchaseOrder> page = purchaseOrderService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<PurchaseOrder> listPurchaseOder = page.getContent();

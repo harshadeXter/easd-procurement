@@ -39,7 +39,7 @@ public class ReturnSupplierInvoiceController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-            int pageSize = 5;
+            int pageSize = 15;
             Page<PurchaseOrderLine> page = returnSupplierService.findPaginated(pageNo, pageSize, sortField, sortDir);
             List<PurchaseOrderLine> listPurchaseLines = page.getContent();
             model.addAttribute("currentPage", pageNo);
