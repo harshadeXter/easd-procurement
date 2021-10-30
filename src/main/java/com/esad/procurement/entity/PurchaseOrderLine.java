@@ -3,6 +3,7 @@ package com.esad.procurement.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -39,6 +40,7 @@ public class PurchaseOrderLine {
     private Date deliveryExpectedDate;
 
     @Column(name = "status")
+
     private String status;
 
     @Column(name = "returned_quantity")
@@ -47,7 +49,8 @@ public class PurchaseOrderLine {
     @Column(name = "notes")
     private String notes;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "purchase_order_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JoinColumn(name = "purchase_order_id", nullable = true)
     private PurchaseOrder purchaseOrder;
 }

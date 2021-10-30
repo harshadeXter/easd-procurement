@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PurchaeOrderLineRepository extends JpaRepository<PurchaseOrderLine, Long> {
+public interface PurchaseOrderLineRepository extends JpaRepository<PurchaseOrderLine, Long> {
 }
 
