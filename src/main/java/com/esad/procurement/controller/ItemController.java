@@ -44,8 +44,6 @@ public class ItemController {
         Page<Item> page = itemService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Item> listItems = page.getContent();
 
-        System.out.println("page content " + listItems);
-
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
@@ -55,7 +53,6 @@ public class ItemController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("listItems", listItems);
-        System.out.println("modal " + model);
         return "items";
     }
 }

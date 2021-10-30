@@ -18,8 +18,8 @@ public class PurchaseRequestLines {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "purchase_request_id")
-    private long purchaseRequestId;
+//    @Column(name = "purchase_request_id")
+//    private long purchaseRequestId;
 
 
     @Column(name = "item_description")
@@ -45,7 +45,7 @@ public class PurchaseRequestLines {
     private Item item;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "purchase_id", nullable = false)
+    @JoinColumn(name = "purchase_request_id", nullable = false)
     private PurchaseRequest purchaseRequest;
 
 }

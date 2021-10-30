@@ -60,10 +60,10 @@
                 <a th:href="@{'/employeePage/' + ${currentPage} + '?sortField=phone&sortDir=' + ${reverseSortDir}}">
                     Employee Email</a>
             </th>
-            <th>
-                <a th:href="@{'/employeePage/' + ${currentPage} + '?sortField=address&sortDir=' + ${reverseSortDir}}">
-                    Employee Approval Level</a>
-            </th>
+<!--            <th>-->
+<!--                <a th:href="@{'/employeePage/' + ${currentPage} + '?sortField=address&sortDir=' + ${reverseSortDir}}">-->
+<!--                    Employee Approval Level</a>-->
+<!--            </th>-->
             <th> Actions</th>
         </tr>
         </thead>
@@ -145,17 +145,17 @@
 
                         <div class="form-group">
                             <label for="employeeFirstName" class="col-form-label">Employee First Name:</label>
-                            <input class="form-control" placeholder="Supplier Name"
+                            <input class="form-control" placeholder="First Name"
                                    th:field="*{firstName}" type="text" id="employeeFirstName" required="required">
                         </div>
                         <div class="form-group">
                             <label for="employeeLastName" class="col-form-label">Employee Last Name:</label>
-                            <input class="form-control" placeholder="Supplier Mobile"
+                            <input class="form-control" placeholder="Last Name"
                                    th:field="*{lastName}" type="text" id="employeeLastName" required="required">
                         </div>
                         <div class="form-group">
                             <label for="employeeEmail" class="col-form-label">Employee Email Address:</label>
-                            <input class="form-control" placeholder="Supplier Mobile"
+                            <input class="form-control" placeholder="Email Address"
                                    th:field="*{email}" type="text" id="employeeEmail" required="required">
                         </div>
 <!--                        <div class="form-group">-->

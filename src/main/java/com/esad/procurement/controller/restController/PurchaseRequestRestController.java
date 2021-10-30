@@ -1,7 +1,7 @@
 package com.esad.procurement.controller.restController;
 
-import com.esad.procurement.entity.Employee;
-import com.esad.procurement.service.EmployeeService;
+import com.esad.procurement.entity.PurchaseRequest;
+import com.esad.procurement.service.PurchaseRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "api/v1/employee")
-public class EmployeeRestController {
+@RequestMapping(value = "api/v1/purchaseRequest")
+public class PurchaseRequestRestController {
     @Autowired
-    private EmployeeService employeeService;
+    private PurchaseRequestService purchaseRequestService;
 
     @RequestMapping(value = "find/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Employee> getEmployee(@PathVariable("id") int id) {
-        try {
-            return new ResponseEntity<Employee>(employeeService.getEmployeeById(id), HttpStatus.OK);
+    public ResponseEntity<PurchaseRequest> getPurchaseRequest(@PathVariable("id") int id){
+        try{
+            return new ResponseEntity<PurchaseRequest>(purchaseRequestService.getPurchaseRequestById(id), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<PurchaseRequest>(HttpStatus.BAD_REQUEST);
         }
     }
 }

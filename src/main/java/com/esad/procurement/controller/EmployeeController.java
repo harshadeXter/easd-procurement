@@ -17,7 +17,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
-    public String viewSupplierListPage(Model model) {
+    public String viewEmployeeListPage(Model model) {
         Employee employee = new Employee();
         model.addAttribute("employee", employee);
         return findPaginated(1, "firstName", "asc", model);
